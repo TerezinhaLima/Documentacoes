@@ -5,59 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teka Lima | Portfólio Técnico</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
-        body { background-color: #000; color: #d1d5db; scroll-behavior: smooth; }
-        .sidebar { background: #050505; border-right: 1px solid #1f2937; }
-        .glass-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 1rem; padding: 1.5rem; margin-bottom: 2rem; }
-        .accent { color: #10b981; }
-        pre { border-radius: 8px !important; background: #000 !important; border: 1px solid #1f2937 !important; font-size: 0.8rem !important; }
-        .nav-link { cursor: pointer; transition: all 0.3s; border-left: 3px solid transparent; color: #6b7280; }
-        .nav-link:hover { color: #fff; background: #111; }
-        .nav-link.active { background: #111; border-left-color: #10b981; color: #fff; font-weight: bold; }
-        section { display: none; }
-        section.active { display: block; animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .doc-content h1, .doc-content h2 { color: #fff; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; }
-        .doc-content h3 { color: #10b981; font-weight: 700; margin-top: 1.5rem; }
-        .doc-content p { margin-bottom: 1rem; line-height: 1.6; }
-        .doc-content ul { list-style: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+        :root {
+            --bg-primary: #000;
+            --bg-card: #0a0a0a;
+            --bg-sidebar: #050505;
+            --border: #1f2937;
+            --text-main: #d1d5db;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --text-secondary: #6b7280;
+        }
+        
+        body { 
+            background-color: var(--bg-primary); 
+            color: var(--text-main); 
+            scroll-behavior: smooth; 
+        }
+        
+        .sidebar { 
+            background: var(--bg-sidebar); 
+            border-right: 1px solid var(--border); 
+        }
+        
+        .glass-card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            border-radius: 1rem; 
+            padding: 1.5rem; 
+            margin-bottom: 2rem; 
+        }
+        
+        .accent { color: var(--accent); }
+        
+        pre { 
+            border-radius: 8px; 
+            background: #000; 
+            border: 1px solid var(--border); 
+            font-size: 0.8rem; 
+            overflow-x: auto; 
+            position: relative;
+        }
+        
+        .nav-link { 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            border-left: 3px solid transparent; 
+            color: var(--text-secondary); 
+        }
+        
+        .nav-link:hover { 
+            color: #fff; 
+            background: #111; 
+        }
+        
+        .nav-link.active { 
+            background: #111; 
+            border-left-color: var(--accent); 
+            color: #fff; 
+            font-weight: bold; 
+        }
+        
+        section { 
+            display: none; 
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+        }
+        
+        section.active { 
+            display: block; 
+            opacity: 1;
+        }
+        
+        .doc-content h1, 
+        .doc-content h2 { 
+            color: #fff; 
+            font-weight: 800; 
+            margin-top: 2rem; 
+            margin-bottom: 1rem; 
+        }
+        
+        .doc-content h3 { 
+            color: var(--accent); 
+            font-weight: 700; 
+            margin-top: 1.5rem; 
+        }
+        
+        .doc-content p { 
+            margin-bottom: 1rem; 
+            line-height: 1.6; 
+        }
+        
+        .doc-content ul { 
+            list-style: disc; 
+            margin-left: 1.5rem; 
+            margin-bottom: 1rem; 
+        }
+        
         .doc-content strong { color: #fff; }
+        
         /* Container para posicionar o botão */
-.code-container {
-    position: relative;
-}
-
-/* Estilo do Botão de Copiar */
-.copy-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(166, 31, 67, 0.8); /* Cor Vinho */
-    color: #fff;
-    border: none;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s, background 0.2s;
-    text-transform: uppercase;
-}
-
-.code-container:hover .copy-btn {
-    opacity: 1;
-}
-
-.copy-btn:hover {
-    background: #590902; /* Vinho Escuro */
-}
-
-.copy-btn.copied {
-    background: #10b981; /* Verde Sucesso */
-}
-
+        .code-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+        
+        /* Estilo do Botão de Copiar */
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(166, 31, 67, 0.8);
+            color: #fff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s, background 0.2s;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+        
+        .code-container:hover .copy-btn {
+            opacity: 1;
+        }
+        
+        .copy-btn:hover {
+            background: #590902;
+        }
+        
+        .copy-btn.copied {
+            background: var(--accent);
+        }
+        
+        /* Ajustes para responsividade */
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+            }
+            
+            .glass-card {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.75rem;
+                padding: 0.75rem;
+            }
+        }
+        
+        /* Melhorias visuais */
+        .tech-tag {
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--bg-card);
+            color: var(--text-main);
+        }
+        
+        .tech-tag.accent {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
     </style>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen">
@@ -65,84 +181,91 @@
     <!-- SIDEBAR -->
     <aside class="sidebar w-full md:w-72 md:fixed md:h-full z-10 p-6 flex flex-col">
         <div class="mb-10">
-            <h1 class="text-white font-black text-2xl tracking-tighter uppercase leading-none">TEKA<span class="accent">Lima</span></h1>
-            <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em] mt-2 text-center md:text-left">PORTFÓLIO TÉCNICO</p>
+            <h1 class="text-white font-black text-2xl tracking-tighter uppercase leading-none">
+                TEKA<span class="accent">Lima</span>
+            </h1>
+            <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em] mt-2 text-center md:text-left">
+                PORTFÓLIO TÉCNICO
+            </p>
         </div>
-        <div class="code-container">
-    <button class="copy-btn">Copiar</button>
-    <pre><code># Seu script aqui...</code></pre>
-</div>
 
         <nav class="space-y-1 flex-grow">
-            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">Documentações</p>
-            <div onclick="showSection('redhat')" id="link-redhat" class="nav-link active block p-3 text-sm">🐧 Backup Red Hat 10</div>
-            <div onclick="showSection('whatsapp')" id="link-whatsapp" class="nav-link block p-3 text-sm">💬 WhatsApp + n8n</div>
-            <div onclick="showSection('zabbix')" id="link-zabbix" class="nav-link block p-3 text-sm">📊 Zabbix + Docker</div>
-            <div onclick="showSection('n8n')" id="link-n8n" class="nav-link block p-3 text-sm rounded-r-lg">🧩 n8n + Docker</div>
-
+            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">
+                Documentações
+            </p>
+            <div onclick="showSection('redhat')" id="link-redhat" class="nav-link active block p-3 text-sm">
+                🐧 Backup Red Hat 10
+            </div>
+            <div onclick="showSection('whatsapp')" id="link-whatsapp" class="nav-link block p-3 text-sm">
+                💬 WhatsApp + n8n
+            </div>
+            <div onclick="showSection('zabbix')" id="link-zabbix" class="nav-link block p-3 text-sm">
+                📊 Zabbix + Docker
+            </div>
+            <div onclick="showSection('n8n')" id="link-n8n" class="nav-link block p-3 text-sm rounded-r-lg">
+                🧩 n8n + Docker
+            </div>
         </nav>
 
-           <div class="mt-auto pt-6 border-t border-gray-900 text-[13px] font-bold text-gray-500 tracking-wider">
-    © TEREZINHA LIMA
+        <div class="mt-auto pt-6 border-t border-gray-900 text-[13px] font-bold text-gray-500 tracking-wider">
+            © TEREZINHA LIMA
         </div>
     </aside>
 
     <!-- ÁREA DE CONTEÚDO -->
-    <main class="flex-1 md:ml-72 p-6 md:p-15 max-w-5xl">
+    <main class="flex-1 md:ml-72 p-6 md:p-8 lg:p-12 max-w-5xl">
 
         <!-- PROJETO: RED HAT 10 -->
         <section id="redhat" class="active doc-content">
-            <h1 class="text-4xl">Projeto Prático: Sistema de Backup e Monitoramento para Red Hat 10</h1>
+            <h1 class="text-3xl md:text-4xl">Projeto Prático: Sistema de Backup e Monitoramento para Red Hat 10</h1>
             
             <div class="glass-card mt-8">
-                <div class="doc-content">
-    <h2 class="mb-6 flex items-center gap-2">
-        <span class="w-8 h-1 bg-[var(--accent)] rounded-full"></span>
-        1. Visão Geral do Sistema
-    </h2>
-    
-    <div class="glass-card mb-8">
-        <p class="text-[var(--text-main)] mb-4 text-lg"><strong>Objetivo:</strong></p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="p-4 border border-[var(--border)] rounded-lg bg-black/40 hover:border-[var(--accent)] transition-colors">
-                <span class="text-[var(--accent)] block mb-1">📦 Armazenamento</span>
-                <p class="text-sm">Backup automatizado de diretórios críticos com integridade garantida.</p>
-            </div>
-            <div class="p-4 border border-[var(--border)] rounded-lg bg-black/40 hover:border-[var(--accent)] transition-colors">
-                <span class="text-[var(--accent)] block mb-1">🧹 Higienização</span>
-                <p class="text-sm">Gerenciamento inteligente de logs com rotação e compactação eficiente.</p>
-            </div>
-            <div class="p-4 border border-[var(--border)] rounded-lg bg-black/40 hover:border-[var(--accent)] transition-colors">
-                <span class="text-[var(--accent)] block mb-1">📈 Observabilidade</span>
-                <p class="text-sm">Monitoramento em tempo real de volumetria e espaço em disco.</p>
-            </div>
-            <div class="p-4 border border-[var(--border)] rounded-lg bg-black/40 hover:border-[var(--accent)] transition-colors">
-                <span class="text-[var(--accent)] block mb-1">🔔 Notificação</span>
-                <p class="text-sm">Alertas instantâneos via Telegram para incidentes e status.</p>
-            </div>
-        </div>
-    </div>
+                <h2 class="mb-6 flex items-center gap-2">
+                    <span class="w-8 h-1 bg-accent rounded-full"></span>
+                    1. Visão Geral do Sistema
+                </h2>
+                
+                <div class="glass-card mb-8">
+                    <p class="text-lg mb-4"><strong>Objetivo:</strong></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 border border-gray-700 rounded-lg bg-black/40 hover:border-accent transition-colors">
+                            <span class="accent block mb-1">📦 Armazenamento</span>
+                            <p class="text-sm">Backup automatizado de diretórios críticos com integridade garantida.</p>
+                        </div>
+                        <div class="p-4 border border-gray-700 rounded-lg bg-black/40 hover:border-accent transition-colors">
+                            <span class="accent block mb-1">🧹 Higienização</span>
+                            <p class="text-sm">Gerenciamento inteligente de logs com rotação e compactação eficiente.</p>
+                        </div>
+                        <div class="p-4 border border-gray-700 rounded-lg bg-black/40 hover:border-accent transition-colors">
+                            <span class="accent block mb-1">📈 Observabilidade</span>
+                            <p class="text-sm">Monitoramento em tempo real de volumetria e espaço em disco.</p>
+                        </div>
+                        <div class="p-4 border border-gray-700 rounded-lg bg-black/40 hover:border-accent transition-colors">
+                            <span class="accent block mb-1">🔔 Notificação</span>
+                            <p class="text-sm">Alertas instantâneos via Telegram para incidentes e status.</p>
+                        </div>
+                    </div>
+                </div>
 
-    <h2 class="mb-6">2. Stack Tecnológica</h2>
-    <div class="flex flex-wrap gap-3">
-        <span class="px-3 py-1 border border-[var(--border)] rounded-full text-[12px] font-bold uppercase tracking-widest text-[var(--text-main)] bg-[var(--bg-card)]">logrotate</span>
-        <span class="px-3 py-1 border border-[var(--border)] rounded-full text-[12px] font-bold uppercase tracking-widest text-[var(--text-main)] bg-[var(--bg-card)]">crontab</span>
-        <span class="px-3 py-1 border border-[var(--border)] rounded-full text-[12px] font-bold uppercase tracking-widest text-[var(--text-main)] bg-[var(--bg-card)]">bash script</span>
-        <span class="px-3 py-1 border border-[var(--border)] rounded-full text-[12px] font-bold uppercase tracking-widest text-[var(--text-main)] bg-[var(--bg-card)]">tar & gzip</span>
-        <span class="px-3 py-1 border border-[var(--border)] rounded-full text-[12px] font-bold uppercase tracking-widest text-[var(--accent)] border-[var(--accent)]">telegram api</span>
-    </div>
-</div>
-
-                </ul>
+                <h2 class="mb-6">2. Stack Tecnológica</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span class="tech-tag">logrotate</span>
+                    <span class="tech-tag">crontab</span>
+                    <span class="tech-tag">bash script</span>
+                    <span class="tech-tag">tar & gzip</span>
+                    <span class="tech-tag accent">telegram api</span>
+                </div>
             </div>
 
             <h2>3.1 Backup Automático de Diretórios</h2>
             <p>Script de backup (<code>/home/teka/backup_sistema.sh</code>):</p>
-            <pre class="language-bash"><code>#!/bin/bash 
+            <div class="code-container">
+                <button class="copy-btn">Copiar</button>
+                <pre><code>#!/bin/bash 
 
 # CONFIGURAÇÕES DO TELEGRAM 
-TELEGRAM_BOT_TOKEN="Suan chave API" 
-TELEGRAM_CHAT_ID="id chat/grupo" # va no whats web e poe pra inspencionar, aperte crtl_f e procure por @g.us)
+TELEGRAM_BOT_TOKEN="Sua chave API" 
+TELEGRAM_CHAT_ID="id chat/grupo"
 TELEGRAM_API_URL="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" 
 
 # CONFIGURAÇÕES DE BACKUP  
@@ -182,14 +305,20 @@ else
     MESSAGE="❌ FALHA NO BACKUP - Máquina: $HOSTNAME - Data: $backup_time" 
 fi 
 send_telegram_notification "$MESSAGE"</code></pre>
+            </div>
 
             <h3 class="mt-6">Agendamento no cron (crontab -e):</h3>
-            <pre class="language-bash"><code># Executar backup diário às 9h40 
+            <div class="code-container">
+                <button class="copy-btn">Copiar</button>
+                <pre><code># Executar backup diário às 9h40 
 40 09 * * * /home/teka/backup_sistema.sh</code></pre>
+            </div>
 
             <h2>3.2 Rotação de Logs e Compactação</h2>
             <p>Configuração do logrotate (<code>/etc/logrotate.d/sistema_backup</code>)</p>
-            <pre class="language-bash"><code>/var/log/backup.log { 
+            <div class="code-container">
+                <button class="copy-btn">Copiar</button>
+                <pre><code>/var/log/backup.log { 
     daily 
     rotate 7 
     compress 
@@ -197,55 +326,37 @@ send_telegram_notification "$MESSAGE"</code></pre>
     notifempty 
     create 640 root root 
 }</code></pre>
+            </div>
 
             <h2>3.3 Monitoramento de Espaço em Disco</h2>
-            <pre class="language-bash"><code>#!/bin/bash 
+            <div class="code-container">
+                <button class="copy-btn">Copiar</button>
+                <pre><code>#!/bin/bash 
 # Configurações 
-
 LIMITE=80 
-
 TELEGRAM_BOT_TOKEN="Sua chave API" 
-
-TELEGRAM_CHAT_ID="id chat/grupo" #va no whats web e poe pra inspencionar, aperte crtl_f e procure por @g.us)
-
+TELEGRAM_CHAT_ID="id chat/grupo"
 LOG_FILE="/home/teka/monitor_disco.log" 
 
-  
-
 # Verificar uso do disco 
-
 USO=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%') 
 
-  
-
 # Função para enviar mensagem via Telegram 
-
 enviar_telegram() { 
-
     local mensagem_formatada="$1" 
-
     curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \ 
-
         -d chat_id="${TELEGRAM_CHAT_ID}" \ 
-
         -d text="${mensagem_formatada}" \ 
-
         -d parse_mode="Markdown" 
-
 } 
 
-  
-
 # Verificar se o uso excede o limite 
-
 if [ "$USO" -ge "$LIMITE" ]; then 
-
     MENSAGEM="⚠️ Alerta de Disco ⚠️  Uso do disco: ${USO}%" 
-
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $MENSAGEM" >> "$LOG_FILE" 
-
     enviar_telegram "$MENSAGEM" 
 fi</code></pre>
+            </div>
 
             <h2>4. Documentação e Manual</h2>
             <div class="glass-card">
@@ -269,7 +380,7 @@ fi</code></pre>
 
         <!-- PROJETO: WHATSAPP + N8N -->
         <section id="whatsapp" class="doc-content">
-            <h1 class="text-4xl">Integração WhatsApp via n8n</h1>
+            <h1 class="text-3xl md:text-4xl">Integração WhatsApp via n8n</h1>
             
             <div class="glass-card mt-8">
                 <h2>🚀 Primeiros Passos</h2>
@@ -289,23 +400,28 @@ fi</code></pre>
                 <p><strong>Authentication:</strong> Header Auth</p>
                 
                 <h3 class="text-white mt-4">Headers</h3>
-                <pre class="language-text"><code>Name: apitoken | Value: Sua Session
+                <div class="code-container">
+                    <button class="copy-btn">Copiar</button>
+                    <pre><code>Name: apitoken | Value: Sua Session
 Name: sessionkey | Value: Sua SessionKey</code></pre>
+                </div>
 
                 <h3 class="text-white mt-4">Body (JSON)</h3>
-                <pre class="language-json"><code>{ 
+                <div class="code-container">
+                    <button class="copy-btn">Copiar</button>
+                    <pre><code>{ 
   "session": "sua_session_aqui", 
   "number": "5511999999999", 
   "text": {{ JSON.stringify($json.mensagem) }} 
 }</code></pre>
+                </div>
             </div>
-     
-     </section>
+        </section>
+
         <!-- PROJETO: Zabbix+ Docker -->
         <section id="zabbix" class="doc-content">
-            <h1 class="text-4xl">Imagem container zabbix</h1>
-            <h1 class="text-4xl">Monitoramento <span class="accent">Zabbix 7.0 LTS</span></h1>
-            <p class="text-sand text-sm uppercase tracking-widest mb-8">Infraestrutura em Containers Docker</p>
+            <h1 class="text-3xl md:text-4xl">Monitoramento <span class="accent">Zabbix 7.0 LTS</span></h1>
+            <p class="text-gray-500 text-sm uppercase tracking-widest mb-8">Infraestrutura em Containers Docker</p>
             
             <div class="glass-card">
                 <h2>1. Visão Geral dos Serviços</h2>
@@ -336,34 +452,36 @@ Name: sessionkey | Value: Sua SessionKey</code></pre>
 
             <h2>3. Guia de Inicialização</h2>
             <p>Execute o deploy da stack com o comando abaixo:</p>
-            <pre><code># Subir o ambiente em background
+            <div class="code-container">
+                <button class="copy-btn">Copiar</button>
+                <pre><code># Subir o ambiente em background
 docker-compose up -d
 
 # Verificar se os containers estão rodando
 docker ps</code></pre>
+            </div>
 
-            <div class="mt-6 p-4 border border-accent-burgundy/30 bg-black/40 rounded-lg">
+            <div class="mt-6 p-4 border border-accent/30 bg-black/40 rounded-lg">
                 <h3 class="mt-0 text-sm">Credenciais Padrão (Web)</h3>
                 <p class="text-xs"><strong>Usuário:</strong> Admin | <strong>Senha:</strong> zabbix</p>
             </div>
 
             <h2>4. Segurança e Manutenção</h2>
-            <p>Certifique-se de que o diretório <code class="text-sand">./zbx_db_data</code> tenha permissões de escrita para o UID do Docker. Em produção, altere as senhas default no arquivo <code class="text-sand">.env</code>.</p>
+            <p>Certifique-se de que o diretório <code>./zbx_db_data</code> tenha permissões de escrita para o UID do Docker. Em produção, altere as senhas default no arquivo <code>.env</code>.</p>
         </section>
 
-    </section>
-       <!-- PROJETO: n8n DOCKER -->
-<section id="n8n" class="doc-content">
-    <h1 class="text-4xl">Automação com <span class="accent">n8n</span></h1>
-    <p class="text-sand text-sm uppercase tracking-widest mb-8">Instalação via Docker Compose</p>
-    
-    <div class="glass-card">
-        <h2>Guia de Inicialização</h2>
-        <p>Utilize o arquivo <code>docker-compose.yml</code> abaixo para subir sua instância do n8n com persistência local de dados.</p>
-        
-        <div class="code-container">
-            <button class="copy-btn">Copiar</button>
-            <pre><code>version: '3.1'
+        <!-- PROJETO: n8n DOCKER -->
+        <section id="n8n" class="doc-content">
+            <h1 class="text-3xl md:text-4xl">Automação com <span class="accent">n8n</span></h1>
+            <p class="text-gray-500 text-sm uppercase tracking-widest mb-8">Instalação via Docker Compose</p>
+            
+            <div class="glass-card">
+                <h2>Guia de Inicialização</h2>
+                <p>Utilize o arquivo <code>docker-compose.yml</code> abaixo para subir sua instância do n8n com persistência local de dados.</p>
+                
+                <div class="code-container">
+                    <button class="copy-btn">Copiar</button>
+                    <pre><code>version: '3.1'
 services:
   n8n:
     image: n8nio/n8n:latest
@@ -377,20 +495,19 @@ services:
       - GENERIC_TIMEZONE=America/Sao_Paulo
     volumes:
       - ./n8n_data:/home/node/.n8n</code></pre>
-        </div>
-    </div>
+                </div>
+            </div>
 
-    <h2>Comandos Rápidos</h2>
-    <div class="code-container">
-        <button class="copy-btn">Copiar</button>
-        <pre><code># Subir o container em modo daemon
+            <h2>Comandos Rápidos</h2>
+            <div class="code-container">
+                <button class="copy-btn">Copiar</button>
+                <pre><code># Subir o container em modo daemon
 docker-compose up -d
 
 # Verificar logs da aplicação
 docker logs -f n8n</code></pre>
-    </div>
-</section>
-
+            </div>
+        </section>
     </main>
 
     <script>
@@ -407,31 +524,34 @@ docker logs -f n8n</code></pre>
             // Scroll para o topo
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    </script>
 
-    <script src="https://cdnjs.cloudflare.com"></script>
-    <script src="https://cdnjs.cloudflare.com"></script>
-    <script src="https://cdnjs.cloudflare.com"></script>
-    document.querySelectorAll('.copy-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const container = button.parentElement;
-        const code = container.querySelector('code').innerText;
+        // Inicializar botões de copiar
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const container = e.target.parentElement;
+                    const code = container.querySelector('code').innerText;
+                    const originalText = e.target.innerText;
 
-        navigator.clipboard.writeText(code).then(() => {
-            // Feedback visual
-          const originalText = button.innerText;
-            button.innerText = 'Copiado!';
-            button.classList.add('copied');
+                    navigator.clipboard.writeText(code).then(() => {
+                        // Feedback visual
+                        e.target.innerText = 'Copiado!';
+                        e.target.classList.add('copied');
 
-            setTimeout(() => {
-                button.innerText = originalText;
-                button.classList.remove('copied');
-            }, 2000);
-        }).catch(err => {
-            console.error('Erro ao copiar: ', err);
+                        setTimeout(() => {
+                            e.target.innerText = originalText;
+                            e.target.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Erro ao copiar: ', err);
+                        e.target.innerText = 'Erro!';
+                        setTimeout(() => {
+                            e.target.innerText = originalText;
+                        }, 2000);
+                    });
+                });
+            });
         });
-    });
-});
-
+    </script>
 </body>
 </html>
