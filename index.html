@@ -3,138 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teka Lab | Portfólio SysAdmin</title>
+    <title>Teka Lab | Portfólio Técnico</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
-        body { background-color: #000; color: #d1d5db; overflow-x: hidden; }
+        body { background-color: #000; color: #d1d5db; scroll-behavior: smooth; }
         .sidebar { background: #050505; border-right: 1px solid #1f2937; }
         .glass-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 1rem; padding: 1.5rem; margin-bottom: 2rem; }
         .accent { color: #10b981; }
-        pre { border-radius: 8px !important; background: #000 !important; border: 1px solid #1f2937 !important; }
-        .nav-link { cursor: pointer; transition: all 0.3s; border-left: 3px solid transparent; }
-        .nav-link.active { background: #111; border-left-color: #10b981; color: #fff; }
-        section { display: none; } /* Esconde todas as seções por padrão */
-        section.active { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        pre { border-radius: 8px !important; background: #000 !important; border: 1px solid #1f2937 !important; font-size: 0.8rem !important; }
+        .nav-link { cursor: pointer; transition: all 0.3s; border-left: 3px solid transparent; color: #6b7280; }
+        .nav-link:hover { color: #fff; background: #111; }
+        .nav-link.active { background: #111; border-left-color: #10b981; color: #fff; font-weight: bold; }
+        section { display: none; }
+        section.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .doc-content h1, .doc-content h2 { color: #fff; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; }
+        .doc-content h3 { color: #10b981; font-weight: 700; margin-top: 1.5rem; }
+        .doc-content p { margin-bottom: 1rem; line-height: 1.6; }
+        .doc-content ul { list-style: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+        .doc-content strong { color: #fff; }
     </style>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar w-full md:w-72 md:fixed md:h-full z-10 p-6">
+    <aside class="sidebar w-full md:w-72 md:fixed md:h-full z-10 p-6 flex flex-col">
         <div class="mb-10">
-            <h1 class="text-white font-black text-2xl tracking-tighter uppercase">TEKA<span class="accent">.LAB</span></h1>
-            <p class="text-[10px] text-gray-500 font-bold tracking-widest">SYSADMIN & AUTOMATION</p>
+            <h1 class="text-white font-black text-2xl tracking-tighter uppercase leading-none">TEKA<span class="accent">.DOCS</span></h1>
+            <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em] mt-2 text-center md:text-left">PORTFÓLIO TÉCNICO</p>
         </div>
         
-        <nav class="space-y-1">
-            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">Projetos</p>
+        <nav class="space-y-1 flex-grow">
+            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">Documentações</p>
             <div onclick="showSection('redhat')" id="link-redhat" class="nav-link active block p-3 text-sm">🐧 Backup Red Hat 10</div>
-            <div onclick="showSection('whatsapp')" id="link-whatsapp" class="nav-link block p-3 text-sm text-gray-400">💬 WhatsApp + n8n</div>
+            <div onclick="showSection('whatsapp')" id="link-whatsapp" class="nav-link block p-3 text-sm">💬 WhatsApp + n8n</div>
         </nav>
+
+        <div class="mt-auto pt-6 border-t border-gray-900 text-[10px] text-gray-600">
+            © 2025 SysAdmin & Automation
+        </div>
     </aside>
 
-    <!-- CONTEÚDO -->
+    <!-- ÁREA DE CONTEÚDO -->
     <main class="flex-1 md:ml-72 p-6 md:p-12 max-w-5xl">
 
-        <!-- PROJETO: RED HAT -->
-        <section id="redhat" class="active">
-            <header class="mb-10">
-                <h2 class="text-4xl font-black text-white">Projeto Prático: Sistema de Backup e Monitoramento para Red Hat 10</h2>
-            </header>
-
-            <div class="glass-card">
-                <h3 class="text-white font-bold mb-4">1. Visão Geral do Sistema</h3>
-                <ul class="list-disc pl-5 space-y-1 text-sm">
+        <!-- PROJETO: RED HAT 10 -->
+        <section id="redhat" class="active doc-content">
+            <h1 class="text-4xl">Projeto Prático: Sistema de Backup e Monitoramento para Red Hat 10</h1>
+            
+            <div class="glass-card mt-8">
+                <h2>1. Visão Geral do Sistema</h2>
+                <p><strong>Objetivo:</strong> Criar um sistema automatizado para:</p>
+                <ul>
                     <li>Backup de diretórios importantes</li>
                     <li>Gerenciamento de logs com rotação e compactação</li>
                     <li>Monitoramento de espaço em disco</li>
                     <li>Alertas por telegram</li>
                 </ul>
+
+                <h2>2. Componentes Principais</h2>
+                <p>Ferramentas que usaremos:</p>
+                <ul>
+                    <li><strong>logrotate</strong> para rotação de logs</li>
+                    <li><strong>cron</strong> para agendamento</li>
+                    <li><strong>df</strong> para monitoramento de disco</li>
+                    <li><strong>telegram</strong> para envio de alertas</li>
+                    <li><strong>tar</strong> para compactação</li>
+                </ul>
             </div>
 
-            <div class="glass-card">
-                <h3 class="text-white font-bold mb-4">2. Componentes Principais</h3>
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-xs font-mono">
-                    <div class="bg-black p-2 border border-gray-800 rounded">logrotate</div>
-                    <div class="bg-black p-2 border border-gray-800 rounded">cron</div>
-                    <div class="bg-black p-2 border border-gray-800 rounded">df</div>
-                    <div class="bg-black p-2 border border-gray-800 rounded">telegram</div>
-                    <div class="bg-black p-2 border border-gray-800 rounded">tar</div>
-                </div>
-            </div>
+            <h2>3.1 Backup Automático de Diretórios</h2>
+            <p>Script de backup (<code>/home/teka/backup_sistema.sh</code>):</p>
+            <pre class="language-bash"><code>#!/bin/bash 
 
-            <div class="space-y-8">
-                <div>
-                    <h4 class="text-white font-semibold mb-2">3.1 Backup Automático de Diretórios</h4>
-                    <p class="text-xs text-gray-500 mb-2">Script: <code>/home/teka/backup_sistema.sh</code></p>
-                    <pre class="language-bash"><code>#!/bin/bash
-TELEGRAM_BOT_TOKEN="8474363577:AAH2UCICA1eb8NnMwpq32mmor-iCff6vWvQ"
-TELEGRAM_CHAT_ID="8466975480"
-BACKUP_DIR="/home/teka/meus_backups"
-DIRETORIOS=("/etc" "/home" "/var/www")
-HOSTNAME=$(hostname)
+# CONFIGURAÇÕES DO TELEGRAM  
+TELEGRAM_BOT_TOKEN="8474363577:AAH2UCICA1eb8NnMwpq32mmor-iCff6vWvQ" 
+TELEGRAM_CHAT_ID="8466975480" 
+TELEGRAM_API_URL="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" 
 
-# Função Notificação
-send_telegram_notification() {
-    curl -s -X POST "https://api.telegram.org" \
-    -d chat_id="$TELEGRAM_CHAT_ID" -d text="$1" -d parse_mode="Markdown"
+# CONFIGURAÇÕES DE BACKUP  
+BACKUP_DIR="/home/teka/meus_backups" 
+LOG_FILE="/home/teka/backup.log" 
+DIRETORIOS=("/etc" "/home" "/var/www") 
+HOSTNAME=$(hostname) 
+BACKUP_STATUS="SUCESSO" 
+
+send_telegram_notification() { 
+    local message_text="$1" 
+    curl -s -X POST "$TELEGRAM_API_URL" -d chat_id="$TELEGRAM_CHAT_ID" -d text="$message_text" -d parse_mode="Markdown" > /dev/null 
 }
 
-# Lógica de Backup
-mkdir -p "$BACKUP_DIR"
-for DIR in "${DIRETORIOS[@]}"; do
-    tar -czf "$BACKUP_DIR/backup_$(basename "$DIR")_$(date +%Y%m%d).tar.gz" -P "$DIR"
-done
-send_telegram_notification "✅ Backup concluído em $HOSTNAME"</code></pre>
-                </div>
+# LÓGICA DO BACKUP  
+mkdir -p "$BACKUP_DIR" 
+backup_time=$(date "+%d/%m/%Y %H:%M:%S") 
+backup_date=$(date +%Y%m%d_%H%M%S) 
+echo "[$(date)] Iniciando backup" >> "$LOG_FILE" 
 
-                <div class="glass-card">
-                    <h4 class="text-white font-semibold mb-2">Agendamento no Cron (crontab -e)</h4>
-                    <code class="text-emerald-400 block bg-black p-4 rounded-lg border border-gray-800 font-mono text-sm">
-                        40 09 * * * /home/teka/backup_sistema.sh
-                    </code>
-                </div>
+for DIR in "${DIRETORIOS[@]}"; do 
+    DESTINO_COMPLETO="$BACKUP_DIR/backup_$(basename "$DIR")_${backup_date}.tar.gz" 
+    if tar -czf "$DESTINO_COMPLETO" --exclude="$BACKUP_DIR" -P "$DIR" >> "$LOG_FILE" 2>&1; then 
+        echo "[$(date)] Sucesso no backup de $DIR" >> "$LOG_FILE" 
+        echo " Tamanho: $(du -sh "$DESTINO_COMPLETO" | cut -f1)" >> "$LOG_FILE" 
+    else 
+        echo "[$(date)] FALHA no backup de $DIR" >> "$LOG_FILE" 
+        BACKUP_STATUS="FALHA" 
+        [ -f "$DESTINO_COMPLETO" ] && rm -f "$DESTINO_COMPLETO" 
+    fi 
+done 
 
-                <div>
-                    <h4 class="text-white font-semibold mb-2">3.3 Monitoramento de Espaço em Disco</h4>
-                    <pre class="language-bash"><code>#!/bin/bash
-LIMITE=80
-USO=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
-if [ "$USO" -ge "$LIMITE" ]; then
-    MENSAGEM="⚠️ Alerta de Disco: ${USO}% em uso!"
-    # Envio via Telegram...
+# NOTIFICAÇÃO FINAL  
+if [ "$BACKUP_STATUS" == "SUCESSO" ]; then 
+    MESSAGE="✅ BACKUP REALIZADO COM SUCESSO - Máquina: $HOSTNAME - Data: $backup_time" 
+else 
+    MESSAGE="❌ FALHA NO BACKUP - Máquina: $HOSTNAME - Data: $backup_time" 
+fi 
+send_telegram_notification "$MESSAGE"</code></pre>
+
+            <h3 class="mt-6">Agendamento no cron (crontab -e):</h3>
+            <pre class="language-bash"><code># Executar backup diário às 9h40 
+40 09 * * * /home/teka/backup_sistema.sh</code></pre>
+
+            <h2>3.2 Rotação de Logs e Compactação</h2>
+            <p>Configuração do logrotate (<code>/etc/logrotate.d/sistema_backup</code>)</p>
+            <pre class="language-bash"><code>/var/log/backup.log { 
+    daily 
+    rotate 7 
+    compress 
+    delaycompress 
+    notifempty 
+    create 640 root root 
+}</code></pre>
+
+            <h2>3.3 Monitoramento de Espaço em Disco</h2>
+            <pre class="language-bash"><code>#!/bin/bash 
+LIMITE=80 
+USO=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%') 
+
+if [ "$USO" -ge "$LIMITE" ]; then 
+    MENSAGEM="⚠️ Alerta de Disco ⚠️ Uso do disco: ${USO}%" 
+    enviar_telegram "$MENSAGEM" 
 fi</code></pre>
-                </div>
 
-                <div class="glass-card bg-emerald-900/10 border-emerald-900/50">
-                    <h3 class="text-emerald-500 font-bold mb-2">5. Como Apresentar ao Seu Chefe</h3>
-                    <p class="text-sm">Destaque: <strong>Custo Zero</strong>, <strong>Automatização nativa</strong> e <strong>Segurança proativa</strong> com alertas em tempo real.</p>
-                </div>
+            <h2>4. Documentação e Manual</h2>
+            <div class="glass-card">
+                <h3>4.1 Manutenção Diária</h3>
+                <ul>
+                    <li>Verificar logs: <code>tail -f /home/teka/backup.log</code></li>
+                    <li>Espaço em disco: <code>df -h</code></li>
+                    <li>Recuperação: <code>tar -xzf arquivo.tar.gz -C /destino/</code></li>
+                </ul>
             </div>
+
+            <h2>5. Apresentação Executiva</h2>
+            <p><strong>Pontos-chave:</strong> Simplicidade (ferramentas nativas), Custo Zero, Segurança proativa e Documentação completa.</p>
         </section>
 
-        <!-- PROJETO: WHATSAPP -->
-        <section id="whatsapp">
-            <header class="mb-10">
-                <h2 class="text-4xl font-black text-white">Integração WhatsApp via n8n</h2>
-            </header>
-
-            <div class="glass-card">
-                <h3 class="text-white font-bold mb-4">🚀 Primeiros Passos</h3>
-                <p class="text-sm text-gray-400">Configuração de credenciais Uzapi e endpoint n8n.</p>
+        <!-- PROJETO: WHATSAPP + N8N -->
+        <section id="whatsapp" class="doc-content">
+            <h1 class="text-4xl">Integração WhatsApp via n8n</h1>
+            
+            <div class="glass-card mt-8">
+                <h2>🚀 Primeiros Passos</h2>
+                <ul>
+                    <li><strong>Cadastro:</strong> Acesse o site da Uzapi para testar a API gratuita.</li>
+                    <li><strong>Acesso:</strong> Use as credenciais enviadas por e-mail.</li>
+                    <li><strong>Conexão:</strong> Conecte seu WhatsApp lendo o QR Code no painel.</li>
+                </ul>
+                <h3>Dados de Conexão</h3>
+                <p>Session e SessionKey: <code>empresa1</code> (nomes curtos, minúsculos, sem espaços).</p>
             </div>
 
+            <h2>⚙️ Configuração no n8n (HTTP Request)</h2>
             <div class="glass-card">
-                <h4 class="text-white font-semibold mb-4">Configuração n8n</h4>
-                <div class="space-y-4 text-sm font-mono">
-                    <div class="bg-black p-3 rounded border border-gray-800 text-blue-400">METHOD: POST</div>
-                    <div class="bg-black p-3 rounded border border-gray-800">URL: [ENDPOINT]/sendText</div>
-                </div>
-                <h4 class="text-white font-semibold mt-6 mb-2">JSON Payload</h4>
+                <p><strong>Method:</strong> POST</p>
+                <p><strong>URL:</strong> URL_DO_ENDPOINT/sendText</p>
+                <p><strong>Authentication:</strong> Header Auth</p>
+                
+                <h3 class="text-white mt-4">Headers</h3>
+                <pre class="language-text"><code>Name: apitoken | Value: Sua Session
+Name: sessionkey | Value: Sua SessionKey</code></pre>
+
+                <h3 class="text-white mt-4">Body (JSON)</h3>
                 <pre class="language-json"><code>{ 
-  "session": "sua_session", 
+  "session": "sua_session_aqui", 
   "number": "5511999999999", 
   "text": {{ JSON.stringify($json.mensagem) }} 
 }</code></pre>
@@ -143,21 +195,19 @@ fi</code></pre>
 
     </main>
 
-    <!-- SCRIPT DE NAVEGAÇÃO -->
     <script>
         function showSection(id) {
-            // Esconde todas as seções
+            // Esconde todas as seções e remove classes ativas
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-            // Remove active dos links
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active', 'text-white'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.add('text-gray-400'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
 
-            // Mostra a seção clicada
+            // Mostra a seção desejada
             document.getElementById(id).classList.add('active');
-            // Ativa o link no menu
-            const activeLink = document.getElementById('link-' + id);
-            activeLink.classList.add('active', 'text-white');
-            activeLink.classList.remove('text-gray-400');
+            // Ativa o link correspondente
+            document.getElementById('link-' + id).classList.add('active');
+
+            // Scroll para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 
