@@ -264,8 +264,53 @@ Name: sessionkey | Value: Sua SessionKey</code></pre>
         <!-- PROJETO: Zabbix+ Docker -->
         <section id="zabbix" class="doc-content">
             <h1 class="text-4xl">Imagem container zabbix</h1>
+            <h1 class="text-4xl">Monitoramento <span class="accent">Zabbix 7.0 LTS</span></h1>
+            <p class="text-sand text-sm uppercase tracking-widest mb-8">Infraestrutura em Containers Docker</p>
             
-            <div class="glass-card mt-8">
+            <div class="glass-card">
+                <h2>1. Visão Geral dos Serviços</h2>
+                <p>A pilha é composta por quatro serviços interdependentes utilizando <strong>Docker Compose</strong>:</p>
+                <ul class="ml-4 space-y-2">
+                    <li><strong>zabbix-db:</strong> Banco de dados PostgreSQL 16 Alpine.</li>
+                    <li><strong>zabbix-server:</strong> Núcleo de processamento e alertas.</li>
+                    <li><strong>zabbix-web:</strong> Interface Nginx + PHP-FPM (Porta 80).</li>
+                    <li><strong>zabbix-agent:</strong> Monitoramento do host local (Modo Privilegiado).</li>
+                </ul>
+            </div>
+
+            <h2>2. Detalhamento Técnico</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="glass-card mb-0">
+                    <h3 class="mt-0">🗄️ Banco de Dados</h3>
+                    <p class="text-sm"><strong>Imagem:</strong> postgres:16-alpine</p>
+                    <p class="text-sm"><strong>Volume:</strong> ./zbx_db_data</p>
+                    <p class="text-sm"><strong>User:</strong> zabbix / <strong>Pass:</strong> 12345678</p>
+                </div>
+                <div class="glass-card mb-0">
+                    <h3 class="mt-0">🌐 Interface Web</h3>
+                    <p class="text-sm"><strong>Servidor:</strong> Nginx</p>
+                    <p class="text-sm"><strong>Timezone:</strong> America/Sao_Paulo</p>
+                    <p class="text-sm"><strong>Acesso:</strong> http://localhost:80</p>
+                </div>
+            </div>
+
+            <h2>3. Guia de Inicialização</h2>
+            <p>Execute o deploy da stack com o comando abaixo:</p>
+            <pre><code># Subir o ambiente em background
+docker-compose up -d
+
+# Verificar se os containers estão rodando
+docker ps</code></pre>
+
+            <div class="mt-6 p-4 border border-accent-burgundy/30 bg-black/40 rounded-lg">
+                <h3 class="mt-0 text-sm">Credenciais Padrão (Web)</h3>
+                <p class="text-xs"><strong>Usuário:</strong> Admin | <strong>Senha:</strong> zabbix</p>
+            </div>
+
+            <h2>4. Segurança e Manutenção</h2>
+            <p>Certifique-se de que o diretório <code class="text-sand">./zbx_db_data</code> tenha permissões de escrita para o UID do Docker. Em produção, altere as senhas default no arquivo <code class="text-sand">.env</code>.</p>
+        </section>
+
     </section>
         <!-- PROJETO: n8n + Docker -->
         <section id="n8n" class="doc-content">
