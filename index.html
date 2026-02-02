@@ -3,142 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio Técnico | Dev & SysAdmin</title>
+    <title>Portfólio Técnico | Automações e Infraestrutura</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
         body { background-color: #000; color: #d1d5db; scroll-behavior: smooth; }
         .sidebar { background: #050505; border-right: 1px solid #1f2937; }
-        .glass-card { background: #0a0a0a; border: 1px solid #1f2937; padding: 1.5rem; border-radius: 0.75rem; }
-        .nav-link:hover { background: #111; color: #10b981; }
-        .active-section { display: block !important; }
-        code { font-family: 'Fira Code', monospace; font-size: 0.9em; }
-        pre { border-radius: 8px !important; margin: 1rem 0 !important; }
+        .glass-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 1rem; padding: 1.5rem; margin-bottom: 2rem; }
+        .accent { color: #10b981; }
+        pre { border-radius: 8px !important; margin: 1rem 0 !important; background: #000 !important; border: 1px solid #1f2937 !important; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.85em; }
+        .nav-link { transition: all 0.3s; border-left: 3px solid transparent; }
+        .nav-link:hover { background: #111; border-left-color: #10b981; color: #fff; }
     </style>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen">
 
-    <!-- Sidebar -->
-    <aside class="sidebar w-full md:w-64 md:fixed md:h-full z-10 p-6">
-        <div class="mb-8">
-            <h1 class="text-white font-black text-xl tracking-tighter uppercase">Portfolio.Doc</h1>
-            <p class="text-xs text-emerald-500 font-bold">SysAdmin & Automation</p>
+    <!-- MENU LATERAL -->
+    <aside class="sidebar w-full md:w-72 md:fixed md:h-full z-10 p-6">
+        <div class="mb-10 text-center md:text-left">
+            <h1 class="text-white font-black text-2xl tracking-tighter uppercase">TEKA<span class="accent">.LAB</span></h1>
+            <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em]">DOCUMENTAÇÃO TÉCNICA</p>
         </div>
         
-        <nav class="space-y-2">
-            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">Projetos</p>
-            <a href="#redhat" class="nav-link block p-3 rounded-lg transition text-sm">🐧 Backup Red Hat 10</a>
-            <a href="#whatsapp" class="nav-link block p-3 rounded-lg transition text-sm">💬 WhatsApp + n8n</a>
-            <a href="#whatsapp" class="nav-link block p-3 rounded-lg transition text-sm"> n8n no docker</a>
-            <a href="#whatsapp" class="nav-link block p-3 rounded-lg transition text-sm"> zabbix docker</a>
+        <nav class="space-y-1">
+            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">Projetos Ativos</p>
+            <a href="#redhat" class="nav-link block p-3 text-sm text-gray-400">🐧 Backup Red Hat 10</a>
+            <a href="#whatsapp" class="nav-link block p-3 text-sm text-gray-400">💬 WhatsApp + n8n</a>
         </nav>
+
+        <div class="mt-20 pt-10 border-t border-gray-900">
+            <p class="text-[10px] text-gray-600 uppercase mb-4 tracking-widest">Contato</p>
+            <div class="flex gap-4">
+                <a href="#" class="text-gray-400 hover:text-white transition text-xs">GitHub</a>
+                <a href="#" class="text-gray-400 hover:text-white transition text-xs">LinkedIn</a>
+            </div>
+        </div>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 md:ml-64 p-6 md:p-12 max-w-5xl">
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="flex-1 md:ml-72 p-6 md:p-12 max-w-5xl">
 
         <!-- PROJETO 1: RED HAT -->
-        <section id="redhat" class="mb-24">
+        <section id="redhat" class="mb-32">
             <header class="mb-10">
-                <span class="text-emerald-500 font-mono text-sm uppercase tracking-widest">Projeto Prático</span>
-                <h2 class="text-4xl font-black text-white mt-2">Sistema de Backup e Monitoramento <br> <span class="text-gray-500">Red Hat 10</span></h2>
+                <div class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded inline-block mb-4 tracking-widest uppercase">Infraestrutura Linux</div>
+                <h2 class="text-4xl font-black text-white">Sistema de Backup e Monitoramento <br><span class="text-gray-500 font-light">Red Hat Enterprise Linux 10</span></h2>
             </header>
 
-            <div class="glass-card mb-8">
-                <h3 class="text-white font-bold mb-4">1. Visão Geral</h3>
-                <p>Sistema automatizado para backup de diretórios, gerenciamento de logs, monitoramento de disco e alertas via Telegram.</p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-xs font-mono">
-                    <div class="bg-black p-2 border border-gray-800 rounded">logrotate</div>
-                    <div class="bg-black p-2 border border-gray-800 rounded">cron</div>
-                    <div class="bg-black p-2 border border-gray-800 rounded">telegram bot</div>
-                    <div class="bg-black p-2 border border-gray-800 rounded">bash script</div>
+            <div class="glass-card">
+                <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+                    <span class="w-4 h-4 bg-emerald-500 rounded-sm"></span> 1. Visão Geral
+                </h3>
+                <p class="text-sm">Sistema automatizado para backup de diretórios críticos, gerenciamento de logs com rotação e alertas proativos via Telegram.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+                    <div class="bg-black p-3 border border-gray-800 rounded-lg text-center">
+                        <span class="block text-[10px] text-gray-600 uppercase">Ferramenta</span>
+                        <span class="text-xs font-mono text-white">logrotate</span>
+                    </div>
+                    <div class="bg-black p-3 border border-gray-800 rounded-lg text-center">
+                        <span class="block text-[10px] text-gray-600 uppercase">Agendador</span>
+                        <span class="text-xs font-mono text-white">cronie</span>
+                    </div>
+                    <div class="bg-black p-3 border border-gray-800 rounded-lg text-center">
+                        <span class="block text-[10px] text-gray-600 uppercase">Alertas</span>
+                        <span class="text-xs font-mono text-white">Telegram API</span>
+                    </div>
+                    <div class="bg-black p-3 border border-gray-800 rounded-lg text-center">
+                        <span class="block text-[10px] text-gray-600 uppercase">Compressão</span>
+                        <span class="text-xs font-mono text-white">tar.gz</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="space-y-6">
-                <h4 class="text-white font-semibold">3.1 Script de Backup (/home/teka/backup_sistema.sh)</h4>
-                <pre class="language-bash"><code>#!/bin/bash
+            <div class="space-y-8">
+                <div>
+                    <h4 class="text-white font-semibold mb-4">3.1 Script de Backup Automático</h4>
+                    <pre class="language-bash"><code>#!/bin/bash
 # CONFIGURAÇÕES DO TELEGRAM
-TELEGRAM_BOT_TOKEN="toke do telegram"
-TELEGRAM_CHAT_ID="id chat telegram"
-DIRETORIOS=("/etc" "/home" "/var/www")
+TELEGRAM_BOT_TOKEN="8474363577:AAH2UCICA1eb8NnMwpq32mmor-iCff6vWvQ"
+TELEGRAM_CHAT_ID="8466975480"
 BACKUP_DIR="/home/teka/meus_backups"
+DIRETORIOS=("/etc" "/home" "/var/www")
 
-# Lógica de compressão e envio
-mkdir -p "$BACKUP_DIR"
-for DIR in "${DIRETORIOS[@]}"; do
-    tar -czf "$BACKUP_DIR/backup_$(basename "$DIR")_$(date +%Y%m%d).tar.gz" -P "$DIR"
-done
-# Notifica via Telegram se sucesso...</code></pre>
+# Lógica de backup e notificação inclusa...</code></pre>
+                </div>
 
-                <h4 class="text-white font-semibold">Agendamento Cron</h4>
-                <div class="bg-black p-4 border border-gray-800 rounded-lg text-emerald-400 font-mono text-sm">
-                    40 09 * * * /home/teka/backup_sistema.sh
+                <div class="glass-card">
+                    <h4 class="text-white font-semibold mb-2">Agendamento Cron (crontab -e)</h4>
+                    <code class="text-emerald-400 block bg-black p-4 rounded-lg border border-gray-800">
+                        40 09 * * * /home/teka/backup_sistema.sh
+                    </code>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-4">3.3 Monitoramento de Disco</h4>
+                    <pre class="language-bash"><code># Alerta quando o uso excede 80%
+LIMITE=80
+USO=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
+if [ "$USO" -ge "$LIMITE" ]; then
+    MENSAGEM="⚠️ Alerta de Disco: ${USO}%"
+    enviar_telegram "$MENSAGEM"
+fi</code></pre>
                 </div>
             </div>
         </section>
 
-        <!-- DIVIDER -->
-        <hr class="border-gray-900 my-20">
+        <!-- SEPARADOR -->
+        <div class="border-t border-gray-900 my-20"></div>
 
-        <!-- PROJET 2: WHATSAPP N8N -->
-        <section id="whatsapp" class="mb-24">
+        <!-- PROJETO 2: WHATSAPP N8N -->
+        <section id="whatsapp" class="mb-32">
             <header class="mb-10">
-                <span class="text-emerald-500 font-mono text-sm uppercase tracking-widest">Integração API</span>
-                <h2 class="text-4xl font-black text-white mt-2">Conectar WhatsApp via <span class="text-gray-500">n8n</span></h2>
+                <div class="bg-blue-500/10 text-blue-500 text-[10px] font-bold px-2 py-1 rounded inline-block mb-4 tracking-widest uppercase">Automação Low-Code</div>
+                <h2 class="text-4xl font-black text-white">Conectar WhatsApp via <span class="text-gray-500 font-light">n8n</span></h2>
             </header>
 
-            <div class="glass-card mb-8">
-                <h3 class="text-white font-bold mb-4">🚀 Primeiros Passos (Uzapi)</h3>
-                <ul class="list-disc pl-5 space-y-2 text-sm text-gray-400">
-                    <li><strong class="text-white">Cadastro:</strong> Obtenha API gratuita em <a href="https://uzapi.com.br" class="text-emerald-500">uzapi.com.br</a></li>
-                    <li><strong class="text-white">Conexão:</strong> Vincule o WhatsApp via QR Code no painel.</li>
-                    <li><strong class="text-white">Credenciais:</strong> Anote Session, SessionKey e Token.</li>
+            <div class="glass-card">
+                <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+                    <span class="w-4 h-4 bg-blue-500 rounded-sm"></span> 🚀 Primeiros Passos
+                </h3>
+                <ul class="space-y-4 text-sm">
+                    <li><strong class="text-white">Cadastro:</strong> Acesse a <a href="https://uzapi.com.br" class="text-blue-400 underline">Uzapi</a> para testar a API gratuita.</li>
+                    <li><strong class="text-white">Conexão:</strong> No painel, conecte seu WhatsApp via QR Code.</li>
+                    <li class="bg-black p-4 rounded border border-gray-800 font-mono text-[11px] leading-relaxed">
+                        <span class="text-gray-500 italic block mb-2">// Dados de Conexão</span>
+                        Session: empresa1 <br>
+                        SessionKey: empresa1 <br>
+                        Token: Código fornecido no painel
+                    </li>
                 </ul>
             </div>
 
             <div class="glass-card">
-                <h3 class="text-white font-bold mb-4">⚙️ Configuração n8n (HTTP Request)</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm mb-6 font-mono">
-                    <div class="p-3 bg-black rounded border border-gray-800">
-                        <span class="text-gray-500 block text-[10px]">METHOD</span> POST
+                <h3 class="text-white font-bold text-lg mb-6">⚙️ Configuração no n8n</h3>
+                
+                <div class="space-y-6">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase mb-2 font-bold tracking-widest">1. Parâmetros Básicos</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono">
+                            <div class="bg-black p-2 border border-gray-800 rounded">METHOD: <span class="text-white">POST</span></div>
+                            <div class="bg-black p-2 border border-gray-800 rounded">AUTH: <span class="text-white">Header Auth</span></div>
+                        </div>
                     </div>
-                    <div class="p-3 bg-black rounded border border-gray-800">
-                        <span class="text-gray-500 block text-[10px]">AUTH</span> HEADER AUTH
+
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase mb-2 font-bold tracking-widest">2. Cabeçalhos (Headers)</p>
+                        <table class="w-full text-xs font-mono text-left border-collapse">
+                            <thead>
+                                <tr class="text-gray-600 border-b border-gray-800">
+                                    <th class="pb-2">Name</th>
+                                    <th class="pb-2">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-900">
+                                    <td class="py-3 text-blue-400">apitoken</td>
+                                    <td>Sua Session fornecida</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 text-blue-400">sessionkey</td>
+                                    <td>Sua SessionKey fornecida</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
 
-                <h4 class="text-white font-semibold mb-2">Headers</h4>
-                <table class="w-full text-xs text-left mb-6 font-mono">
-                    <tr class="border-b border-gray-800 text-gray-500">
-                        <th class="pb-2">Key</th>
-                        <th class="pb-2">Value</th>
-                    </tr>
-                    <tr>
-                        <td class="py-2 text-emerald-500">apitoken</td>
-                        <td>Sua Session do Endpoint</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2 text-emerald-500">sessionkey</td>
-                        <td>Sua SessionKey do Endpoint</td>
-                    </tr>
-                </table>
-
-                <h4 class="text-white font-semibold mb-2">Body (JSON)</h4>
-                <pre class="language-json"><code>{ 
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase mb-2 font-bold tracking-widest">3. Corpo (Body JSON)</p>
+                        <pre class="language-json"><code>{ 
   "session": "sua_session_aqui", 
-  "number": "5511999999999", 
+  "number": "numero_do_telefone", 
   "text": {{ JSON.stringify($json.mensagem) }} 
 }</code></pre>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Rodapé -->
-        <footer class="mt-20 py-10 border-t border-gray-900 text-center">
-            <p class="text-gray-600 text-sm italic italic">"Automação é eficiência em código."</p>
+        <footer class="text-center py-20 border-t border-gray-900">
+            <p class="text-gray-600 text-xs tracking-widest uppercase italic">"Simplicidade é a sofisticação máxima."</p>
         </footer>
     </main>
 
+    <!-- SCRIPTS -->
     <script src="https://cdnjs.cloudflare.com"></script>
     <script src="https://cdnjs.cloudflare.com"></script>
     <script src="https://cdnjs.cloudflare.com"></script>
