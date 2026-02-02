@@ -3,190 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio Técnico | Automações e Infraestrutura</title>
+    <title>Teka Lab | Portfólio SysAdmin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
     <style>
-        body { background-color: #000; color: #d1d5db; scroll-behavior: smooth; }
+        body { background-color: #000; color: #d1d5db; overflow-x: hidden; }
         .sidebar { background: #050505; border-right: 1px solid #1f2937; }
         .glass-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 1rem; padding: 1.5rem; margin-bottom: 2rem; }
         .accent { color: #10b981; }
-        pre { border-radius: 8px !important; margin: 1rem 0 !important; background: #000 !important; border: 1px solid #1f2937 !important; }
-        code { font-family: 'Fira Code', monospace; font-size: 0.85em; }
-        .nav-link { transition: all 0.3s; border-left: 3px solid transparent; }
-        .nav-link:hover { background: #111; border-left-color: #10b981; color: #fff; }
+        pre { border-radius: 8px !important; background: #000 !important; border: 1px solid #1f2937 !important; }
+        .nav-link { cursor: pointer; transition: all 0.3s; border-left: 3px solid transparent; }
+        .nav-link.active { background: #111; border-left-color: #10b981; color: #fff; }
+        section { display: none; } /* Esconde todas as seções por padrão */
+        section.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen">
 
-    <!-- MENU LATERAL -->
+    <!-- SIDEBAR -->
     <aside class="sidebar w-full md:w-72 md:fixed md:h-full z-10 p-6">
-        <div class="mb-10 text-center md:text-left">
+        <div class="mb-10">
             <h1 class="text-white font-black text-2xl tracking-tighter uppercase">TEKA<span class="accent">.LAB</span></h1>
-            <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em]">DOCUMENTAÇÃO TÉCNICA</p>
+            <p class="text-[10px] text-gray-500 font-bold tracking-widest">SYSADMIN & AUTOMATION</p>
         </div>
         
         <nav class="space-y-1">
-            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">Projetos Ativos</p>
-            <a href="#redhat" class="nav-link block p-3 text-sm text-gray-400">🐧 Backup Red Hat 10</a>
-            <a href="#whatsapp" class="nav-link block p-3 text-sm text-gray-400">💬 WhatsApp + n8n</a>
+            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">Projetos</p>
+            <div onclick="showSection('redhat')" id="link-redhat" class="nav-link active block p-3 text-sm">🐧 Backup Red Hat 10</div>
+            <div onclick="showSection('whatsapp')" id="link-whatsapp" class="nav-link block p-3 text-sm text-gray-400">💬 WhatsApp + n8n</div>
         </nav>
-
-        <div class="mt-20 pt-10 border-t border-gray-900">
-            <p class="text-[10px] text-gray-600 uppercase mb-4 tracking-widest">Contato</p>
-            <div class="flex gap-4">
-                <a href="#" class="text-gray-400 hover:text-white transition text-xs">GitHub</a>
-                <a href="#" class="text-gray-400 hover:text-white transition text-xs">LinkedIn</a>
-            </div>
-        </div>
     </aside>
 
-    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- CONTEÚDO -->
     <main class="flex-1 md:ml-72 p-6 md:p-12 max-w-5xl">
 
-        <!-- PROJETO 1: RED HAT -->
-        <section id="redhat" class="mb-32">
+        <!-- PROJETO: RED HAT -->
+        <section id="redhat" class="active">
             <header class="mb-10">
-                <div class="bg-emerald-500/10 text-emerald-500 text-[10px] font-bold px-2 py-1 rounded inline-block mb-4 tracking-widest uppercase">Infraestrutura Linux</div>
-                <h2 class="text-4xl font-black text-white">Sistema de Backup e Monitoramento <br><span class="text-gray-500 font-light">Red Hat Enterprise Linux 10</span></h2>
+                <h2 class="text-4xl font-black text-white">Projeto Prático: Sistema de Backup e Monitoramento para Red Hat 10</h2>
             </header>
 
             <div class="glass-card">
-                <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                    <span class="w-4 h-4 bg-emerald-500 rounded-sm"></span> 1. Visão Geral
-                </h3>
-                <p class="text-sm">Sistema automatizado para backup de diretórios críticos, gerenciamento de logs com rotação e alertas proativos via Telegram.</p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
-                    <div class="bg-black p-3 border border-gray-800 rounded-lg text-center">
-                        <span class="block text-[10px] text-gray-600 uppercase">Ferramenta</span>
-                        <span class="text-xs font-mono text-white">logrotate</span>
-                    </div>
-                    <div class="bg-black p-3 border border-gray-800 rounded-lg text-center">
-                        <span class="block text-[10px] text-gray-600 uppercase">Agendador</span>
-                        <span class="text-xs font-mono text-white">cronie</span>
-                    </div>
-                    <div class="bg-black p-3 border border-gray-800 rounded-lg text-center">
-                        <span class="block text-[10px] text-gray-600 uppercase">Alertas</span>
-                        <span class="text-xs font-mono text-white">Telegram API</span>
-                    </div>
-                    <div class="bg-black p-3 border border-gray-800 rounded-lg text-center">
-                        <span class="block text-[10px] text-gray-600 uppercase">Compressão</span>
-                        <span class="text-xs font-mono text-white">tar.gz</span>
-                    </div>
+                <h3 class="text-white font-bold mb-4">1. Visão Geral do Sistema</h3>
+                <ul class="list-disc pl-5 space-y-1 text-sm">
+                    <li>Backup de diretórios importantes</li>
+                    <li>Gerenciamento de logs com rotação e compactação</li>
+                    <li>Monitoramento de espaço em disco</li>
+                    <li>Alertas por telegram</li>
+                </ul>
+            </div>
+
+            <div class="glass-card">
+                <h3 class="text-white font-bold mb-4">2. Componentes Principais</h3>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-xs font-mono">
+                    <div class="bg-black p-2 border border-gray-800 rounded">logrotate</div>
+                    <div class="bg-black p-2 border border-gray-800 rounded">cron</div>
+                    <div class="bg-black p-2 border border-gray-800 rounded">df</div>
+                    <div class="bg-black p-2 border border-gray-800 rounded">telegram</div>
+                    <div class="bg-black p-2 border border-gray-800 rounded">tar</div>
                 </div>
             </div>
 
             <div class="space-y-8">
                 <div>
-                    <h4 class="text-white font-semibold mb-4">3.1 Script de Backup Automático</h4>
+                    <h4 class="text-white font-semibold mb-2">3.1 Backup Automático de Diretórios</h4>
+                    <p class="text-xs text-gray-500 mb-2">Script: <code>/home/teka/backup_sistema.sh</code></p>
                     <pre class="language-bash"><code>#!/bin/bash
-# CONFIGURAÇÕES DO TELEGRAM
 TELEGRAM_BOT_TOKEN="8474363577:AAH2UCICA1eb8NnMwpq32mmor-iCff6vWvQ"
 TELEGRAM_CHAT_ID="8466975480"
 BACKUP_DIR="/home/teka/meus_backups"
 DIRETORIOS=("/etc" "/home" "/var/www")
+HOSTNAME=$(hostname)
 
-# Lógica de backup e notificação inclusa...</code></pre>
+# Função Notificação
+send_telegram_notification() {
+    curl -s -X POST "https://api.telegram.org" \
+    -d chat_id="$TELEGRAM_CHAT_ID" -d text="$1" -d parse_mode="Markdown"
+}
+
+# Lógica de Backup
+mkdir -p "$BACKUP_DIR"
+for DIR in "${DIRETORIOS[@]}"; do
+    tar -czf "$BACKUP_DIR/backup_$(basename "$DIR")_$(date +%Y%m%d).tar.gz" -P "$DIR"
+done
+send_telegram_notification "✅ Backup concluído em $HOSTNAME"</code></pre>
                 </div>
 
                 <div class="glass-card">
-                    <h4 class="text-white font-semibold mb-2">Agendamento Cron (crontab -e)</h4>
-                    <code class="text-emerald-400 block bg-black p-4 rounded-lg border border-gray-800">
+                    <h4 class="text-white font-semibold mb-2">Agendamento no Cron (crontab -e)</h4>
+                    <code class="text-emerald-400 block bg-black p-4 rounded-lg border border-gray-800 font-mono text-sm">
                         40 09 * * * /home/teka/backup_sistema.sh
                     </code>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-semibold mb-4">3.3 Monitoramento de Disco</h4>
-                    <pre class="language-bash"><code># Alerta quando o uso excede 80%
+                    <h4 class="text-white font-semibold mb-2">3.3 Monitoramento de Espaço em Disco</h4>
+                    <pre class="language-bash"><code>#!/bin/bash
 LIMITE=80
 USO=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
 if [ "$USO" -ge "$LIMITE" ]; then
-    MENSAGEM="⚠️ Alerta de Disco: ${USO}%"
-    enviar_telegram "$MENSAGEM"
+    MENSAGEM="⚠️ Alerta de Disco: ${USO}% em uso!"
+    # Envio via Telegram...
 fi</code></pre>
+                </div>
+
+                <div class="glass-card bg-emerald-900/10 border-emerald-900/50">
+                    <h3 class="text-emerald-500 font-bold mb-2">5. Como Apresentar ao Seu Chefe</h3>
+                    <p class="text-sm">Destaque: <strong>Custo Zero</strong>, <strong>Automatização nativa</strong> e <strong>Segurança proativa</strong> com alertas em tempo real.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SEPARADOR -->
-        <div class="border-t border-gray-900 my-20"></div>
-
-        <!-- PROJETO 2: WHATSAPP N8N -->
-        <section id="whatsapp" class="mb-32">
+        <!-- PROJETO: WHATSAPP -->
+        <section id="whatsapp">
             <header class="mb-10">
-                <div class="bg-blue-500/10 text-blue-500 text-[10px] font-bold px-2 py-1 rounded inline-block mb-4 tracking-widest uppercase">Automação Low-Code</div>
-                <h2 class="text-4xl font-black text-white">Conectar WhatsApp via <span class="text-gray-500 font-light">n8n</span></h2>
+                <h2 class="text-4xl font-black text-white">Integração WhatsApp via n8n</h2>
             </header>
 
             <div class="glass-card">
-                <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
-                    <span class="w-4 h-4 bg-blue-500 rounded-sm"></span> 🚀 Primeiros Passos
-                </h3>
-                <ul class="space-y-4 text-sm">
-                    <li><strong class="text-white">Cadastro:</strong> Acesse a <a href="https://uzapi.com.br" class="text-blue-400 underline">Uzapi</a> para testar a API gratuita.</li>
-                    <li><strong class="text-white">Conexão:</strong> No painel, conecte seu WhatsApp via QR Code.</li>
-                    <li class="bg-black p-4 rounded border border-gray-800 font-mono text-[11px] leading-relaxed">
-                        <span class="text-gray-500 italic block mb-2">// Dados de Conexão</span>
-                        Session: empresa1 <br>
-                        SessionKey: empresa1 <br>
-                        Token: Código fornecido no painel
-                    </li>
-                </ul>
+                <h3 class="text-white font-bold mb-4">🚀 Primeiros Passos</h3>
+                <p class="text-sm text-gray-400">Configuração de credenciais Uzapi e endpoint n8n.</p>
             </div>
 
             <div class="glass-card">
-                <h3 class="text-white font-bold text-lg mb-6">⚙️ Configuração no n8n</h3>
-                
-                <div class="space-y-6">
-                    <div>
-                        <p class="text-xs text-gray-500 uppercase mb-2 font-bold tracking-widest">1. Parâmetros Básicos</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono">
-                            <div class="bg-black p-2 border border-gray-800 rounded">METHOD: <span class="text-white">POST</span></div>
-                            <div class="bg-black p-2 border border-gray-800 rounded">AUTH: <span class="text-white">Header Auth</span></div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="text-xs text-gray-500 uppercase mb-2 font-bold tracking-widest">2. Cabeçalhos (Headers)</p>
-                        <table class="w-full text-xs font-mono text-left border-collapse">
-                            <thead>
-                                <tr class="text-gray-600 border-b border-gray-800">
-                                    <th class="pb-2">Name</th>
-                                    <th class="pb-2">Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-900">
-                                    <td class="py-3 text-blue-400">apitoken</td>
-                                    <td>Sua Session fornecida</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 text-blue-400">sessionkey</td>
-                                    <td>Sua SessionKey fornecida</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div>
-                        <p class="text-xs text-gray-500 uppercase mb-2 font-bold tracking-widest">3. Corpo (Body JSON)</p>
-                        <pre class="language-json"><code>{ 
-  "session": "sua_session_aqui", 
-  "number": "numero_do_telefone", 
+                <h4 class="text-white font-semibold mb-4">Configuração n8n</h4>
+                <div class="space-y-4 text-sm font-mono">
+                    <div class="bg-black p-3 rounded border border-gray-800 text-blue-400">METHOD: POST</div>
+                    <div class="bg-black p-3 rounded border border-gray-800">URL: [ENDPOINT]/sendText</div>
+                </div>
+                <h4 class="text-white font-semibold mt-6 mb-2">JSON Payload</h4>
+                <pre class="language-json"><code>{ 
+  "session": "sua_session", 
+  "number": "5511999999999", 
   "text": {{ JSON.stringify($json.mensagem) }} 
 }</code></pre>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <footer class="text-center py-20 border-t border-gray-900">
-            <p class="text-gray-600 text-xs tracking-widest uppercase italic">"Simplicidade é a sofisticação máxima."</p>
-        </footer>
     </main>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPT DE NAVEGAÇÃO -->
+    <script>
+        function showSection(id) {
+            // Esconde todas as seções
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            // Remove active dos links
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active', 'text-white'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.add('text-gray-400'));
+
+            // Mostra a seção clicada
+            document.getElementById(id).classList.add('active');
+            // Ativa o link no menu
+            const activeLink = document.getElementById('link-' + id);
+            activeLink.classList.add('active', 'text-white');
+            activeLink.classList.remove('text-gray-400');
+        }
+    </script>
+
     <script src="https://cdnjs.cloudflare.com"></script>
     <script src="https://cdnjs.cloudflare.com"></script>
     <script src="https://cdnjs.cloudflare.com"></script>
