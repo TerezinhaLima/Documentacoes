@@ -41,7 +41,7 @@
         </nav>
 
         <div class="mt-auto pt-6 border-t border-gray-900 text-[10px] text-gray-600">
-            © 2025 SysAdmin & Automation
+            © Terezinha Lima
         </div>
     </aside>
 
@@ -78,8 +78,8 @@
             <pre class="language-bash"><code>#!/bin/bash 
 
 # CONFIGURAÇÕES DO TELEGRAM  
-TELEGRAM_BOT_TOKEN="8474363577:AAH2UCICA1eb8NnMwpq32mmor-iCff6vWvQ" 
-TELEGRAM_CHAT_ID="8466975480" 
+TELEGRAM_BOT_TOKEN="Sua chave API aqui" 
+TELEGRAM_CHAT_ID="id chat/grupo" #(pode conseguir utilizando inspecionar crtl+f procura por @g.us)
 TELEGRAM_API_URL="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" 
 
 # CONFIGURAÇÕES DE BACKUP  
@@ -141,9 +141,9 @@ send_telegram_notification "$MESSAGE"</code></pre>
 
 LIMITE=80 
 
-TELEGRAM_BOT_TOKEN="8474363577:AAH2UCICA1eb8NnMwpq32mmor-iCff6vWvQ" 
+TELEGRAM_BOT_TOKEN="Sua chave API aqui" 
 
-TELEGRAM_CHAT_ID="8466975480"  
+TELEGRAM_CHAT_ID="id chat/grupo"  #(pode conseguir utilizando inspecionar crtl+f procura por @g.us)
 
 LOG_FILE="/home/teka/monitor_disco.log" 
 
