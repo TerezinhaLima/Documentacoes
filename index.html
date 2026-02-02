@@ -312,12 +312,66 @@ docker ps</code></pre>
         </section>
 
     </section>
-        <!-- PROJETO: n8n + Docker -->
-        <section id="n8n" class="doc-content">
-            <h1 class="text-4xl">Imagem container n8n</h1>
-            
-            <div class="glass-card mt-8">
-     </section>
+        <!-- PROJETO: n8n DOCKER -->
+<section id="n8n" class="doc-content">
+    <h1 class="text-4xl">Automação de Workflows <span class="accent">n8n</span></h1>
+    <p class="text-sand text-sm uppercase tracking-widest mb-8">Deploy Escalável com Docker Compose</p>
+    
+    <div class="glass-card">
+        <h2>1. Visão Geral</h2>
+        <p>O <strong>n8n</strong> é uma ferramenta de automação de fluxo de trabalho extensível. Este setup utiliza a versão estável com persistência de dados local.</p>
+        <ul class="ml-4 space-y-2">
+            <li><strong>Porta Padrão:</strong> 5678</li>
+            <li><strong>Persistência:</strong> Volume Docker para credenciais e workflows.</li>
+            <li><strong>Execução:</strong> Modo autônomo (Queue mode desativado para simplicidade).</li>
+        </ul>
+    </div>
+
+    <h2>2. Configuração Docker Compose</h2>
+    <p>Arquivo <code>docker-compose.yml</code> otimizado:</p>
+    <pre><code>version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n_automation
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://seu-ip-ou-dominio:5678/
+      - GENERIC_TIMEZONE=America/Sao_Paulo
+    volumes:
+      - ./n8n_data:/home/node/.n8n</code></pre>
+
+    <h2>3. Comandos de Inicialização</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="glass-card mb-0">
+            <h3 class="mt-0">Primeiro Boot</h3>
+            <p class="text-xs text-gray-400">Cria os volumes e sobe o serviço:</p>
+            <pre class="mt-2 text-[10px]"><code>docker-compose up -d</code></pre>
+        </div>
+        <div class="glass-card mb-0">
+            <h3 class="mt-0">Logs em Tempo Real</h3>
+            <p class="text-xs text-gray-400">Verificar erros de conexão:</p>
+            <pre class="mt-2 text-[10px]"><code>docker logs -f n8n_automation</code></pre>
+        </div>
+    </div>
+
+    <h2>4. Notas de Implementação</h2>
+    <div class="p-6 border-l-2 border-accent-burgundy bg-zinc-950/50 rounded-r-lg">
+        <p class="text-sm">
+            <strong class="accent">⚠️ Importante:</strong> Para integração com o <strong>WhatsApp (Uzapi)</strong> detalhado na outra seção, certifique-se de que o n8n tenha acesso à rede externa para validar os Webhooks.
+        </p>
+        <p class="text-xs text-sand mt-2 italic">
+            Dica: Ao rodar em VPS, altere N8N_PROTOCOL para https e utilize um Proxy Reverso (Nginx/Traefik).
+        </p>
+    </div>
+</section>
     </main>
 
     <script>
