@@ -6,180 +6,179 @@
     <title>Teka Lima | Portfólio Técnico</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-primary: #000;
-            --bg-card: #0a0a0a;
-            --bg-sidebar: #050505;
-            --border: #1f2937;
-            --text-main: #d1d5db;
-            --accent: #10b981;
-            --accent-hover: #059669;
-            --text-secondary: #6b7280;
-            --code-comment: #6b7280;
-        }
-        
-        body { 
-            background-color: var(--bg-primary); 
-            color: var(--text-main); 
-            scroll-behavior: smooth; 
-        }
-        
-        .sidebar { 
-            background: var(--bg-sidebar); 
-            border-right: 1px solid var(--border); 
-        }
-        
-        .glass-card { 
-            background: var(--bg-card); 
-            border: 1px solid var(--border); 
-            border-radius: 1rem; 
-            padding: 1.5rem; 
-            margin-bottom: 2rem; 
-        }
-        
-        .accent { color: var(--accent); }
-        
-        pre { 
-            border-radius: 15px; 
-            background: #000; 
-            border: 5px solid var(--border); 
-            font-size: 0.8rem; 
-            overflow-x: auto; 
-            position: relative;
-        }
-        
-        .nav-link { 
-            cursor: pointer; 
-            transition: all 0.3s; 
-            border-left: 3px solid transparent; 
-            color: var(--text-secondary); 
-        }
-        
-        .nav-link:hover { 
-            color: #fff; 
-            background: #111; 
-        }
-        
-        .nav-link.active { 
-            background: #111; 
-            border-left-color: var(--accent); 
-            color: #fff; 
-            font-weight: bold; 
-        }
-        
-        section { 
-            display: none; 
-            opacity: 0;
-            transition: opacity 0.4s ease-out;
-        }
-        
-        section.active { 
-            display: block; 
-            opacity: 1;
-        }
-        
-        .doc-content h1, 
-        .doc-content h2 { 
-            color: #fff; 
-            font-weight: 800; 
-            margin-top: 2rem; 
-            margin-bottom: 1rem; 
-        }
-        
-        .doc-content h3 { 
-            color: var(--accent); 
-            font-weight: 700; 
-            margin-top: 1.5rem; 
-        }
-        
-        .doc-content p { 
-            margin-bottom:2rem; 
-            line-height: 2.6; 
-        }
-        
-        .doc-content ul { 
-            list-style: disc; 
-            margin-left: 1.5rem; 
-            margin-bottom: 1rem; 
-        }
-        
-        .doc-content strong { color: #fff; }
-        
-        /* Container para posicionar o botão */
-        .code-container {
-            position: relative;
-            margin: 1rem 0;
-        }
-        /* Adicione este estilo para os comentários */
-        .code-comment {
+       :root {
+    --bg-primary: #000;
+    --bg-card: #0a0a0a;
+    --bg-sidebar: #050505;
+    --border: #1f2937;
+    --text-main: #d1d5db;
+    --accent: #10b981;
+    --accent-hover: #059669;
+    --text-secondary: #6b7280;
+    --code-comment: #6b7280;
+}
+
+body { 
+    background-color: var(--bg-primary); 
+    color: var(--text-main); 
+    scroll-behavior: smooth; 
+}
+
+/* --- DESTAQUES DE CÓDIGO --- */
+.code-comment {
     color: var(--code-comment) !important;
     font-style: italic;
-        }
-        
-        /* Estilo do Botão de Copiar */
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(166, 31, 67, 0.8);
-            color: #fff;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.3s, background 0.2s;
-            text-transform: uppercase;
-            z-index: 10;
-        }
-        
-        .code-container:hover .copy-btn {
-            opacity: 1;
-        }
-        
-        .copy-btn:hover {
-            background: #590902;
-        }
-        
-        .copy-btn.copied {
-            background: var(--accent);
-        }
-        
-        /* Ajustes para responsividade */
-        @media (max-width: 768px) {
-            main {
-                padding: 1rem;
-            }
-            
-            .glass-card {
-                padding: 1rem;
-            }
-            
-            pre {
-                font-size: 0.75rem;
-                padding: 0.75rem;
-            }
-        }
-        
-        /* Melhorias visuais */
-        .tech-tag {
-            padding: 4px 12px;
-            border: 1px solid var(--border);
-            border-radius: 9999px;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            background: var(--bg-card);
-            color: var(--text-main);
-        }
-        
-        .tech-tag.accent {
-            color: var(--accent);
-            border-color: var(--accent);
-        }
+}
+
+.code-string {
+    color: var(--accent) !important;
+    font-weight: 500;
+}
+
+/* --- COMPONENTES --- */
+.sidebar { 
+    background: var(--bg-sidebar); 
+    border-right: 1px solid var(--border); 
+}
+
+.glass-card { 
+    background: var(--bg-card); 
+    border: 1px solid var(--border); 
+    border-radius: 1rem; 
+    padding: 1.5rem; 
+    margin-bottom: 2rem; 
+}
+
+.accent { color: var(--accent); }
+
+pre { 
+    border-radius: 15px; 
+    background: #000; 
+    border: 1px solid var(--border); /* Reduzi para 1px para um look mais clean */
+    font-size: 0.85rem; 
+    padding: 1.2rem;
+    overflow-x: auto; 
+    position: relative;
+    line-height: 1.6;
+}
+
+/* --- NAVEGAÇÃO --- */
+.nav-link { 
+    cursor: pointer; 
+    transition: all 0.3s; 
+    border-left: 3px solid transparent; 
+    color: var(--text-secondary); 
+}
+
+.nav-link:hover { 
+    color: #fff; 
+    background: #111; 
+}
+
+.nav-link.active { 
+    background: #111; 
+    border-left-color: var(--accent); 
+    color: #fff; 
+    font-weight: bold; 
+}
+
+/* --- SEÇÕES --- */
+section { 
+    display: none; 
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+}
+
+section.active { 
+    display: block; 
+    opacity: 1;
+}
+
+/* --- CONTEÚDO --- */
+.doc-content h1, 
+.doc-content h2 { 
+    color: #fff; 
+    font-weight: 800; 
+    margin-top: 2rem; 
+    margin-bottom: 1rem; 
+}
+
+.doc-content h3 { 
+    color: var(--accent); 
+    font-weight: 700; 
+    margin-top: 1.5rem; 
+}
+
+.doc-content p { 
+    margin-bottom: 1.5rem; 
+    line-height: 1.8; 
+}
+
+.doc-content ul { 
+    list-style: disc; 
+    margin-left: 1.5rem; 
+    margin-bottom: 1rem; 
+}
+
+.doc-content strong { color: #fff; }
+
+/* --- BOTÃO DE COPIAR --- */
+.code-container {
+    position: relative;
+    margin: 1rem 0;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(166, 31, 67, 0.8);
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0; /* Oculto por padrão, aparece no hover do container */
+    transition: all 0.3s;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.code-container:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn:hover {
+    background: #590902;
+    transform: scale(1.05);
+}
+
+.copy-btn.copied {
+    background: var(--accent) !important;
+}
+
+/* --- TAGS TÉCNICAS --- */
+.tech-tag {
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--bg-card);
+    color: var(--text-main);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    main { padding: 1rem; }
+    .glass-card { padding: 1rem; }
+    pre { font-size: 0.75rem; padding: 1rem; }
+}
+
     </style>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen">
@@ -517,59 +516,69 @@ docker logs -f n8n</code></pre>
     </main>
 
     <script>
-        function showSection(id) {
-            // Esconde todas as seções e remove classes ativas
-            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+     <script>
+    // 1. Função para trocar de Seção (Abas)
+    function showSection(id) {
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
 
-            // Mostra a seção desejada
-            document.getElementById(id).classList.add('active');
-            // Ativa o link correspondente
-            document.getElementById('link-' + id).classList.add('active');
+        const targetSection = document.getElementById(id);
+        const targetLink = document.getElementById('link-' + id);
 
-            // Scroll para o topo
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        if (targetSection) targetSection.classList.add('active');
+        if (targetLink) targetLink.classList.add('active');
 
-        // Inicializar botões de copiar
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.copy-btn').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const container = e.target.parentElement;
-                    const code = container.querySelector('code').innerText;
-                    const originalText = e.target.innerText;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-                    navigator.clipboard.writeText(code).then(() => {
-                        // Feedback visual
-                        e.target.innerText = 'Copiado!';
-                        e.target.classList.add('copied');
+    // 2. Função de Realce de Sintaxe (Comentários e Strings)
+    function applySyntaxHighlighting() {
+        const codeBlocks = document.querySelectorAll('pre code');
+        codeBlocks.forEach(block => {
+            let content = block.innerHTML;
 
-                        setTimeout(() => {
-                            e.target.innerText = originalText;
-                            e.target.classList.remove('copied');
-                        }, 2000);
-                    }).catch(err => {
-                        console.error('Erro ao copiar: ', err);
-                        e.target.innerText = 'Erro!';
-                        setTimeout(() => {
-                            e.target.innerText = originalText;
-                        }, 2000);
-                    });
+            // Destaca Strings (entre " " ou ' ') com a cor --accent
+            content = content.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, '<span class="code-string">$&</span>');
+
+            // Destaca Comentários (após o #)
+            content = content.replace(/(#.*)/g, '<span class="code-comment">$1</span>');
+
+            block.innerHTML = content;
+        });
+    }
+
+    // 3. Inicialização ao carregar o DOM
+    document.addEventListener('DOMContentLoaded', function() {
+        // Aplica as cores no código
+        applySyntaxHighlighting();
+
+        // Configura os botões de Copiar
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const container = e.target.parentElement;
+                const codeElement = container.querySelector('code');
+                
+                // Pegamos o innerText para não vir as tags <span> do highlight
+                const codeText = codeElement.innerText;
+                const originalText = e.target.innerText;
+
+                navigator.clipboard.writeText(codeText).then(() => {
+                    e.target.innerText = 'Copiado!';
+                    e.target.classList.add('copied');
+
+                    setTimeout(() => {
+                        e.target.innerText = originalText;
+                        e.target.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    e.target.innerText = 'Erro!';
+                    setTimeout(() => e.target.innerText = originalText, 2000);
                 });
             });
         });
-        <script>
-document.addEventListener("DOMContentLoaded", () => {
-    // Seleciona todos os blocos de código
-    const codeBlocks = document.querySelectorAll('pre code');
-    
-    codeBlocks.forEach(block => {
-        const content = block.innerHTML;
-        // Expressão regular para encontrar comentários começando com #
-        const highlighted = content.replace(/(#.*)/g, '<span class="code-comment">$1</span>');
-        block.innerHTML = highlighted;
     });
-});
+</script>
+
   </script>
 </body>
 </html>
