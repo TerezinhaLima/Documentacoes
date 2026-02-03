@@ -15,7 +15,7 @@
     --accent: #10b981;
     --accent-hover: #059669;
     --text-secondary: #6b7280;
-    --code-comment: #6b7280;
+    --code-comment: #10b981;
 }
 
 body { 
@@ -183,39 +183,48 @@ section.active {
 </head>
 <body class="flex flex-col md:flex-row min-h-screen">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar w-full md:w-72 md:fixed md:h-full z-10 p-6 flex flex-col">
-        <div class="mb-10">
-            <h1 class="text-white font-black text-2xl tracking-tighter uppercase leading-none">
-                TEKA<span class="accent">Lima</span>
-            </h1>
-            <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em] mt-2 text-center md:text-left">
-                PORTFÓLIO TÉCNICO
-            </p>
-        </div>
+   <!-- SIDEBAR -->
+<aside class="sidebar w-full md:w-72 md:fixed md:h-full z-10 p-6 flex flex-col">
+    <div class="mb-8">
+        <h1 class="text-white font-black text-2xl tracking-tighter uppercase leading-none">
+            TEKA<span class="accent">Lima</span>
+        </h1>
+        <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em] mt-2 text-center md:text-left">
+            PORTFÓLIO TÉCNICO
+        </p>
+    </div>
 
-        <nav class="space-y-1 flex-grow">
-            <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">
-                Documentações
-            </p>
-            <div onclick="showSection('redhat')" id="link-redhat" class="nav-link active block p-3 text-sm">
-                🐧 Backup Red Hat 10
-            </div>
-            <div onclick="showSection('whatsapp')" id="link-whatsapp" class="nav-link block p-3 text-sm">
-                💬 WhatsApp + n8n
-            </div>
-            <div onclick="showSection('zabbix')" id="link-zabbix" class="nav-link block p-3 text-sm">
-                📊 Zabbix + Docker
-            </div>
-            <div onclick="showSection('n8n')" id="link-n8n" class="nav-link block p-3 text-sm rounded-r-lg">
-                🧩 n8n + Docker
-            </div>
-        </nav>
-
-        <div class="mt-auto pt-6 border-t border-gray-900 text-[13px] font-bold text-gray-500 tracking-wider">
-            © TEREZINHA LIMA
+    <!-- CAMPO DE PESQUISA -->
+    <div class="relative mb-6">
+        <input type="text" id="docSearch" placeholder="Buscar documentação..." 
+               class="w-full bg-[#0a0a0a] border border-gray-800 rounded-lg py-2 pl-3 pr-10 text-xs text-gray-400 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981] transition-all">
+        <div class="absolute right-3 top-2.5 opacity-30">
+            <svg xmlns="http://www.w3.org" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </div>
-    </aside>
+    </div>
+
+    <nav class="space-y-1 flex-grow overflow-y-auto">
+        <p class="text-gray-600 text-[10px] uppercase font-bold tracking-widest mb-4">
+            Documentações
+        </p>
+        <div onclick="showSection('redhat')" id="link-redhat" class="nav-link active block p-3 text-sm">
+            🐧 Backup Red Hat 10
+        </div>
+        <div onclick="showSection('whatsapp')" id="link-whatsapp" class="nav-link block p-3 text-sm">
+            💬 WhatsApp + n8n
+        </div>
+        <div onclick="showSection('zabbix')" id="link-zabbix" class="nav-link block p-3 text-sm">
+            📊 Zabbix + Docker
+        </div>
+        <div onclick="showSection('n8n')" id="link-n8n" class="nav-link block p-3 text-sm">
+            🧩 n8n + Docker
+        </div>
+    </nav>
+
+    <div class="mt-auto pt-6 border-t border-gray-900 text-[13px] font-bold text-gray-500 tracking-wider">
+        © TEREZINHA LIMA
+    </div>
+</aside>
 
     <!-- ÁREA DE CONTEÚDO -->
     <main class="flex-1 md:ml-72 p-6 md:p-8 lg:p-12 max-w-5xl">
@@ -546,11 +555,52 @@ docker logs -f n8n</code></pre>
             block.innerHTML = content;
         });
     }
+// 3. Inicialização ao carregar o DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Aplica as cores no código (Strings e Comentários)
+    applySyntaxHighlighting();
 
-    // 3. Inicialização ao carregar o DOM
-    document.addEventListener('DOMContentLoaded', function() {
-        // Aplica as cores no código
-        applySyntaxHighlighting();
+    const searchInput = document.getElementById('docSearch');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Lógica da Barra de Pesquisa
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            navLinks.forEach(link => {
+                const text = link.innerText.toLowerCase();
+                link.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+    }
+
+    // Limpar pesquisa ao clicar em um link e garantir o clique
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (searchInput) searchInput.value = ''; // Limpa o texto da busca
+            navLinks.forEach(l => l.style.display = 'block'); // Mostra todos os links novamente
+        });
+    });
+
+    // Lógica dos Botões de Copiar (Integrada)
+    document.querySelectorAll('.copy-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const container = e.target.parentElement;
+            const codeText = container.querySelector('code').innerText;
+            const originalText = e.target.innerText;
+
+            navigator.clipboard.writeText(codeText).then(() => {
+                e.target.innerText = 'Copiado!';
+                e.target.classList.add('copied');
+                setTimeout(() => {
+                    e.target.innerText = originalText;
+                    e.target.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    });
+});
+
 
         // Configura os botões de Copiar
         document.querySelectorAll('.copy-btn').forEach(button => {
