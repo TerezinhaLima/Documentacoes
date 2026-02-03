@@ -524,10 +524,10 @@ docker logs -f n8n</code></pre>
         </section>
     </main>
 
-    <script>
-     <script>
+ <script>
     // 1. Função para trocar de Seção (Abas)
     function showSection(id) {
+        // Remove 'active' de todas as seções e links
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
 
@@ -555,80 +555,56 @@ docker logs -f n8n</code></pre>
             block.innerHTML = content;
         });
     }
-// 3. Inicialização ao carregar o DOM
-document.addEventListener('DOMContentLoaded', function() {
-    // Aplica as cores no código (Strings e Comentários)
-    applySyntaxHighlighting();
 
-    const searchInput = document.getElementById('docSearch');
-    const navLinks = document.querySelectorAll('.nav-link');
+    // 3. Inicialização ao carregar o DOM
+    document.addEventListener('DOMContentLoaded', function() {
+        // Aplica as cores no código
+        applySyntaxHighlighting();
 
-    // Lógica da Barra de Pesquisa
-    if (searchInput) {
-        searchInput.addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            navLinks.forEach(link => {
-                const text = link.innerText.toLowerCase();
-                link.style.display = text.includes(term) ? 'block' : 'none';
+        const searchInput = document.getElementById('docSearch');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Lógica da Barra de Pesquisa
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const term = e.target.value.toLowerCase();
+                navLinks.forEach(link => {
+                    const text = link.innerText.toLowerCase();
+                    link.style.display = text.includes(term) ? 'block' : 'none';
+                });
+            });
+        }
+
+        // Limpar pesquisa ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (searchInput) searchInput.value = ''; 
+                navLinks.forEach(l => l.style.display = 'block');
             });
         });
-    }
 
-    // Limpar pesquisa ao clicar em um link e garantir o clique
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (searchInput) searchInput.value = ''; // Limpa o texto da busca
-            navLinks.forEach(l => l.style.display = 'block'); // Mostra todos os links novamente
-        });
-    });
-
-    // Lógica dos Botões de Copiar (Integrada)
-    document.querySelectorAll('.copy-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const container = e.target.parentElement;
-            const codeText = container.querySelector('code').innerText;
-            const originalText = e.target.innerText;
-
-            navigator.clipboard.writeText(codeText).then(() => {
-                e.target.innerText = 'Copiado!';
-                e.target.classList.add('copied');
-                setTimeout(() => {
-                    e.target.innerText = originalText;
-                    e.target.classList.remove('copied');
-                }, 2000);
-            });
-        });
-    });
-});
-
-
-        // Configura os botões de Copiar
+        // Lógica dos Botões de Copiar
         document.querySelectorAll('.copy-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const container = e.target.parentElement;
+            button.addEventListener('click', function() {
+                const container = this.parentElement;
                 const codeElement = container.querySelector('code');
-                
-                // Pegamos o innerText para não vir as tags <span> do highlight
-                const codeText = codeElement.innerText;
-                const originalText = e.target.innerText;
+                const codeText = codeElement.innerText; // Texto limpo sem HTML
+                const originalText = this.innerText;
 
                 navigator.clipboard.writeText(codeText).then(() => {
-                    e.target.innerText = 'Copiado!';
-                    e.target.classList.add('copied');
+                    this.innerText = 'Copiado!';
+                    this.classList.add('copied');
 
                     setTimeout(() => {
-                        e.target.innerText = originalText;
-                        e.target.classList.remove('copied');
+                        this.innerText = originalText;
+                        this.classList.remove('copied');
                     }, 2000);
                 }).catch(err => {
-                    e.target.innerText = 'Erro!';
-                    setTimeout(() => e.target.innerText = originalText, 2000);
+                    console.error('Erro ao copiar:', err);
                 });
             });
         });
     });
 </script>
-
-  </script>
 </body>
 </html>
